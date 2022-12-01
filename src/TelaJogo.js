@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 export default function TelaJogo(props){
     return(<>
-        <Content>
+        <Content visible={props.telaBV}>
             <Logo>
                 <img src={logo}/>
                 <Text>ZapRecall</Text>
@@ -15,10 +15,11 @@ export default function TelaJogo(props){
 }
 
 const Content = styled.div`
+    display: ${p => p.visible?'none':'flex'};
+
     width: 100%;
     height: 100vh;
     background-color: #FB6B6B;
-    display: flex;
     flex-direction: column;
     align-items: center;
 `
@@ -27,6 +28,7 @@ const Logo = styled.div`
     display: flex;
     flex-direction: row;
     margin-top: 48px;
+    margin-bottom: 54px;
 
     img{
         width: 52px;

@@ -21,7 +21,6 @@ const Content = styled.div`
     display: ${p=>p.telaBVi? 'flex':'none'};
     align-items: center;
     justify-content: center;
-    z-index: 10;
 `
 const Centered = styled.div`
     display: flex;

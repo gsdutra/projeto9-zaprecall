@@ -13,7 +13,7 @@ function App() {
 	return (
 		<>
 			<BoasVindas func={exitBoasVindas} telaBV={telaBoasVindas}/>
-			<TelaJogo>
+			<TelaJogo telaBV={telaBoasVindas}>
 				<Perguntas/>
 			</TelaJogo>
 		</>
