@@ -1,6 +1,9 @@
 import styled from "styled-components"
 import React from 'react';
 import setaVirar from "./assets/img/seta_virar.png";
+import icone_certo from './assets/img/icone_certo.png';
+import icone_erro from './assets/img/icone_erro.png';
+import icone_quase from './assets/img/icone_quase.png';
 
 export default function Card(props){
 
@@ -8,31 +11,55 @@ export default function Card(props){
 
     const [flipped, setFlipped] = React.useState(false);
 
+    const [concluida, setConcluida] = React.useState(false);
+
+    const [imgScore, setImg] = React.useState(icone_certo);
+
+    const [corTxt, setCor] = React.useState('#333333');
+
+    const images = [icone_certo,icone_quase,icone_erro];
+    const cores = ['#2FBE34','#FF922E','#FF3030']
+
     function play(){
-        setVirada(true);
+        setVirada(!pergVirada);
     }
 
     function virar(){
         setFlipped(!flipped);
     }
 
+    function selectLevel(score){
+        setConcluida(true);
+        play();
+        setImg(images[score]);
+        setCor(cores[score]);
+    }
 
     return(<>
-        <PerguntaFechada pergVirada={pergVirada}>
-            <p>{props.children} </p> <ion-icon name="play-outline" Style="font-size: 28px; cursor:pointer;" onClick={play}></ion-icon>
+        <PerguntaFechada pergVirada={pergVirada} concluida={concluida} cor={corTxt}>
+            <p>{props.children} </p>
+
+            <ion-icon name="play-outline" onClick={play}></ion-icon>
+
+            <img src={imgScore} alt=""/>
         </PerguntaFechada>
+
+
         <PerguntaAberta pergVirada={pergVirada}>
+
             <Face flipped={flipped}>
                 <p>{props.pergunta} </p> <img src={setaVirar} onClick={virar}></img>
             </Face>
+
             <Face flipped={!flipped}>
                 <p>{props.resposta}</p>
                 <div>
-                    <button Style="background: #FF3030">Não lembrei</button>
-                    <button Style="background: #FF922E">Quase não lembrei</button>
-                    <button Style="background: #2FBE34">Zap!</button>
+                    <button Style="background: #FF3030" onClick={()=>selectLevel(2)}>Não lembrei</button>
+                    <button Style="background: #FF922E" onClick={()=>selectLevel(1)}>Quase não lembrei</button>
+                    <button Style="background: #2FBE34" onClick={()=>selectLevel(0)}>Zap!</button>
                 </div>
             </Face>
+
         </PerguntaAberta>
     </>)
 }
@@ -56,7 +83,17 @@ const PerguntaFechada = styled.div`
         font-weight: 700;
         font-size: 16px;
         line-height: 19px;
-        color: #333333;
+        color: ${p=>p.cor};
+        
+        text-decoration:${p=>p.concluida?'line-through':'none'};
+    }
+    ion-icon{
+        font-size: 28px;
+        cursor:pointer;
+        display: ${p=>p.concluida?'none':'flex'};
+    }
+    img{
+        display: ${p=>p.concluida?'flex':'none'};
     }
 
 `

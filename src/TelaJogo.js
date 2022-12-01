@@ -1,8 +1,15 @@
 import logo from './assets/img/logo.png';
-import React, { Children } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+import Footer from './Footer.js';
+import cards from './cards.js';
 
 export default function TelaJogo(props){
+
+    const qtdCartas = cards.length;
+    const [qtdConcluidos, setConcluidos] = React.useState(0);
+    const [arrayAcertos, setAcertos] = React.useState([]);
+
     return(<>
         <Content visible={props.telaBV}>
             <Logo>
@@ -10,6 +17,7 @@ export default function TelaJogo(props){
                 <Text>ZapRecall</Text>
             </Logo>
             {props.children}
+            <Footer total={qtdCartas} concluidos={qtdConcluidos}/>
         </Content>
     </>)
 }
