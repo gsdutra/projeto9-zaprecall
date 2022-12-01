@@ -4,7 +4,7 @@ import logo from './assets/img/logo.png';
 
 export default function BoasVindas(props){
     return(
-        <Content>
+        <Content telaBVi={props.telaBV}>
             <Centered>
                 <img src={logo}/>
                 <Text>ZapRecall</Text>
@@ -18,9 +18,10 @@ const Content = styled.div`
     width: 100%;
     height: 100vh;
     background-color: #FB6B6B;
-    display: flex;
+    display: ${p=>p.telaBVi? 'flex':'none'};
     align-items: center;
     justify-content: center;
+    z-index: 10;
 `
 const Centered = styled.div`
     display: flex;
@@ -30,6 +31,7 @@ const Centered = styled.div`
 const Text = styled.div`
     color: white;
     margin-top: 13px;
+    padding: 3px;
 
     font-family: Righteous;
     font-size: 36px;
@@ -37,7 +39,6 @@ const Text = styled.div`
     line-height: 45px;
     letter-spacing: -0.012em;
     text-align: center;
-
 `
 const Butt = styled.div`
     margin-top: 30px;
