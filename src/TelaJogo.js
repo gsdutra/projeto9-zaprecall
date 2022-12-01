@@ -18,8 +18,6 @@ const Content = styled.div`
     display: ${p => p.visible?'none':'flex'};
 
     width: 100%;
-    height: 100vh;
-    background-color: #FB6B6B;
     flex-direction: column;
     align-items: center;
 `

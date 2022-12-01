@@ -17,7 +17,6 @@ export default function BoasVindas(props){
 const Content = styled.div`
     width: 100%;
     height: 100vh;
-    background-color: #FB6B6B;
     display: ${p=>p.telaBVi? 'flex':'none'};
     align-items: center;
     justify-content: center;
