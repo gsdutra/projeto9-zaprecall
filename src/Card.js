@@ -33,6 +33,7 @@ export default function Card(props){
         play();
         setImg(images[score]);
         setCor(cores[score]);
+        props.increment();
     }
 
     return(<>

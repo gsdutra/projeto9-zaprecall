@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Footer from './Footer.js';
 import cards from './cards.js';
+import Perguntas from './Perguntas.js';
 
 export default function TelaJogo(props){
 
@@ -10,13 +11,17 @@ export default function TelaJogo(props){
     const [qtdConcluidos, setConcluidos] = React.useState(0);
     const [arrayAcertos, setAcertos] = React.useState([]);
 
+    function increment(){
+        setConcluidos(qtdConcluidos + 1);
+    }
+
     return(<>
         <Content visible={props.telaBV}>
             <Logo>
                 <img src={logo}/>
                 <Text>ZapRecall</Text>
             </Logo>
-            {props.children}
+            <Perguntas qtdConcluidos={qtdConcluidos} increment={increment}/>
             <Footer total={qtdCartas} concluidos={qtdConcluidos}/>
         </Content>
     </>)
