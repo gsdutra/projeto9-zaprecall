@@ -8,7 +8,7 @@ export default function BoasVindas(props){
             <Centered>
                 <img src={logo} alt=""/>
                 <Text>ZapRecall</Text>
-                <Butt onClick={props.func}>Iniciar Recall!</Butt>
+                <Butt onClick={props.func} data-test="start-btn">Iniciar Recall!</Butt>
             </Centered>
         </Content>
     )

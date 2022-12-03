@@ -8,16 +8,17 @@ import sad from './assets/img/sad.png';
 export default function Footer(props){
 
     const images = [icone_certo,icone_quase,icone_erro];
+    const dataTestIcons = ['zap-icon','partial-icon','no-icon'];
 
     function defAcertos(lvl){
         return (
-            <img src={images[lvl]} alt=""/>
+            <img src={images[lvl]} alt="" data-test={dataTestIcons[lvl]}/>
         )
     }
 
     return(<>
-        <Foot>
-            <Mensagem>
+        <Foot data-test="footer">
+            <Mensagem data-test="finish-text">
                 {props.finalizou? (props.acertos.includes(2)?
                         <>
                         <img src={sad} alt=""/> Putz...

@@ -17,7 +17,10 @@ export default function Card(props){
 
     const [corTxt, setCor] = React.useState('#333333');
 
+    const [dataTestI, setDT] = React.useState('');
+
     const images = [icone_certo,icone_quase,icone_erro];
+    const dataTestIcons = ['zap-icon','partial-icon','no-icon'];
     const cores = ['#2FBE34','#FF922E','#FF3030']
 
     function play(){
@@ -34,30 +37,31 @@ export default function Card(props){
         setImg(images[score]);
         setCor(cores[score]);
         props.increment(score);
+        setDT(dataTestIcons[score]);
     }
 
     return(<>
-        <PerguntaFechada pergVirada={pergVirada} concluida={concluida} cor={corTxt}>
-            <p>{props.children} </p>
+        <PerguntaFechada pergVirada={pergVirada} concluida={concluida} cor={corTxt} data-test="flashcard">
+            <p data-test="flashcard-text">{props.children} </p>
 
-            <ion-icon name="play-outline" onClick={play}></ion-icon>
+            <ion-icon name="play-outline" onClick={play} data-test="play-btn"></ion-icon>
 
-            <img src={imgScore} alt=""/>
+            <img src={imgScore} alt="" data-test={dataTestI}/>
         </PerguntaFechada>
 
 
         <PerguntaAberta pergVirada={pergVirada}>
 
             <Face flipped={flipped}>
-                <p>{props.pergunta} </p> <img src={setaVirar} alt="" onClick={virar}></img>
+                <p data-test="flashcard-text">{props.pergunta} </p> <img src={setaVirar} alt="" onClick={virar} data-test="turn-btn"></img>
             </Face>
 
             <Face flipped={!flipped}>
-                <p>{props.resposta}</p>
+                <p data-test="flashcard-text">{props.resposta}</p>
                 <div>
-                    <button Style="background: #FF3030" onClick={()=>selectLevel(2)}>Não lembrei</button>
-                    <button Style="background: #FF922E" onClick={()=>selectLevel(1)}>Quase não lembrei</button>
-                    <button Style="background: #2FBE34" onClick={()=>selectLevel(0)}>Zap!</button>
+                    <button Style="background: #FF3030" onClick={()=>selectLevel(2)} data-test="no-btn">Não lembrei</button>
+                    <button Style="background: #FF922E" onClick={()=>selectLevel(1)} data-test="partial-btn">Quase não lembrei</button>
+                    <button Style="background: #2FBE34" onClick={()=>selectLevel(0)} data-test="zap-btn">Zap!</button>
                 </div>
             </Face>
 
