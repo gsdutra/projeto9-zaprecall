@@ -19,16 +19,26 @@ export default function Card(props){
 
     const [dataTestI, setDT] = React.useState('');
 
+    const [dtTxt1, setDtTxt1] = React.useState("flashcard-text");
+    const [dtTxt2, setDtTxt2] = React.useState("");
+    const [dtTxt3, setDtTxt3] = React.useState("");
+
     const images = [icone_certo,icone_quase,icone_erro];
     const dataTestIcons = ['zap-icon','partial-icon','no-icon'];
     const cores = ['#2FBE34','#FF922E','#FF3030']
 
     function play(){
         setVirada(!pergVirada);
+
+        setDtTxt1("");
+        setDtTxt2("flashcard-text");
     }
 
     function virar(){
         setFlipped(!flipped);
+
+        setDtTxt2("");
+        setDtTxt3("flashcard-text");
     }
 
     function selectLevel(score){
@@ -38,11 +48,14 @@ export default function Card(props){
         setCor(cores[score]);
         props.increment(score);
         setDT(dataTestIcons[score]);
+
+        setDtTxt3("");
+        setDtTxt1("flashcard-text");
     }
 
     return(<div data-test="flashcard">
         <PerguntaFechada pergVirada={pergVirada} concluida={concluida} cor={corTxt}>
-            <p data-test="flashcard-text">{props.children} </p>
+            <p data-test={dtTxt1}>{props.children} </p>
 
             <ion-icon name="play-outline" onClick={play} data-test="play-btn"></ion-icon>
 
@@ -53,11 +66,11 @@ export default function Card(props){
         <PerguntaAberta pergVirada={pergVirada}>
 
             <Face flipped={flipped}>
-                <p data-test="flashcard-text">{props.pergunta} </p> <img src={setaVirar} alt="" onClick={virar} data-test="turn-btn"></img>
+                <p data-test={dtTxt2}>{props.pergunta} </p> <img src={setaVirar} alt="" onClick={virar} data-test="turn-btn"></img>
             </Face>
 
             <Face flipped={!flipped}>
-                <p data-test="flashcard-text">{props.resposta}</p>
+                <p data-test={dtTxt3}>{props.resposta}</p>
                 <div>
                     <button Style="background: #FF3030" onClick={()=>selectLevel(2)} data-test="no-btn">Não lembrei</button>
                     <button Style="background: #FF922E" onClick={()=>selectLevel(1)} data-test="partial-btn">Quase não lembrei</button>
