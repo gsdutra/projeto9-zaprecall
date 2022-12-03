@@ -40,8 +40,8 @@ export default function Card(props){
         setDT(dataTestIcons[score]);
     }
 
-    return(<>
-        <PerguntaFechada pergVirada={pergVirada} concluida={concluida} cor={corTxt} data-test="flashcard">
+    return(<div data-test="flashcard">
+        <PerguntaFechada pergVirada={pergVirada} concluida={concluida} cor={corTxt}>
             <p data-test="flashcard-text">{props.children} </p>
 
             <ion-icon name="play-outline" onClick={play} data-test="play-btn"></ion-icon>
@@ -66,7 +66,7 @@ export default function Card(props){
             </Face>
 
         </PerguntaAberta>
-    </>)
+    </div>)
 }
 
 const PerguntaFechada = styled.div`
