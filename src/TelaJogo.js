@@ -10,19 +10,27 @@ export default function TelaJogo(props){
     const qtdCartas = cards.length;
     const [qtdConcluidos, setConcluidos] = React.useState(0);
     const [arrayAcertos, setAcertos] = React.useState([]);
+    const [finalizou, setFinalizou] = React.useState(false);
 
-    function increment(){
+    function increment(nivel){
         setConcluidos(qtdConcluidos + 1);
+
+        const tempArr = [...arrayAcertos, nivel];
+        setAcertos(tempArr);
+
+        if (tempArr.length === qtdCartas){
+            setFinalizou(true);
+        }
     }
 
     return(<>
         <Content visible={props.telaBV}>
             <Logo>
-                <img src={logo}/>
+                <img src={logo} alt=""/>
                 <Text>ZapRecall</Text>
             </Logo>
             <Perguntas qtdConcluidos={qtdConcluidos} increment={increment}/>
-            <Footer total={qtdCartas} concluidos={qtdConcluidos}/>
+            <Footer total={qtdCartas} concluidos={qtdConcluidos} acertos={arrayAcertos} finalizou={finalizou}/>
         </Content>
     </>)
 }

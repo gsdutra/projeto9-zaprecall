@@ -6,7 +6,7 @@ export default function BoasVindas(props){
     return(
         <Content telaBVi={props.telaBV}>
             <Centered>
-                <img src={logo}/>
+                <img src={logo} alt=""/>
                 <Text>ZapRecall</Text>
                 <Butt onClick={props.func}>Iniciar Recall!</Butt>
             </Centered>

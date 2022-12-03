@@ -33,7 +33,7 @@ export default function Card(props){
         play();
         setImg(images[score]);
         setCor(cores[score]);
-        props.increment();
+        props.increment(score);
     }
 
     return(<>
@@ -49,7 +49,7 @@ export default function Card(props){
         <PerguntaAberta pergVirada={pergVirada}>
 
             <Face flipped={flipped}>
-                <p>{props.pergunta} </p> <img src={setaVirar} onClick={virar}></img>
+                <p>{props.pergunta} </p> <img src={setaVirar} alt="" onClick={virar}></img>
             </Face>
 
             <Face flipped={!flipped}>
